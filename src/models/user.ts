@@ -14,7 +14,7 @@ const UserSchema = new mongoose.Schema({
     unique: true,
     lowercase: true,
   },
-  
+
   password: {
     type: String,
     required: true,
@@ -31,9 +31,9 @@ const UserSchema = new mongoose.Schema({
 
   role: {
     type: String,
-    default: 'user', // Possible values: user | admin 
+    default: 'user', // Possible values: user | admin
   }
 
-})
+});
 
 export default mongoose.model<UserInterface & mongoose.Document>('User', UserSchema)

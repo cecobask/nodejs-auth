@@ -5,7 +5,7 @@ import * as mongoose from 'mongoose';
 
 const app = express();
 
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 app.use('/api', routes);
 
 app.listen(3000, async () => {
@@ -14,4 +14,4 @@ app.listen(3000, async () => {
       .then(() => console.log('Database ready!'));
 
   console.log('Listening on port 3000!')
-})
+});

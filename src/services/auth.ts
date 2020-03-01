@@ -1,5 +1,6 @@
 import * as argon2 from 'argon2';
 import { randomBytes } from 'crypto';
+import 'dotenv/config';
 
 import UserModel from '../models/user';
 
@@ -30,7 +31,6 @@ export default class AuthService {
 
   public async LoginAs(email): Promise<any> {
     const userRecord = await UserModel.findOne({ email });
-    console.log('Finding user record...');
     if (!userRecord) {
       throw new Error('User not found');
     }
@@ -64,6 +64,7 @@ export default class AuthService {
 
   }
 
+  // noinspection JSMethodCanBeStatic
   private generateJWT(user) {
 
     return jwt.sign({
@@ -72,7 +73,7 @@ export default class AuthService {
         name: user.name,
         email: user.email
       }
-    }, 'MySuP3R_z3kr3t.', { expiresIn: '6h' }); // @TODO move this to an env var
+    }, process.env.JWTSECRET, { expiresIn: '6h' });
   }
 
 }

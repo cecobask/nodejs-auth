@@ -15,7 +15,7 @@ export default class ItemsService {
     const item = {
       ...itemDTO,
       owner: user._id,
-    }
+    };
 
     return ItemModel.create(item).populate({ path: 'owner', select: '-password -salt' });
   }
@@ -25,7 +25,7 @@ export default class ItemsService {
       ...itemDTO,
       _id: itemId,
       owner: user._id,
-    }
+    };
     return ItemModel.findOneAndUpdate({ _id: itemId, owner: user._id }, item, { new: true }).populate({ path: 'owner', select: '-password -salt' });
   }
   public async Remove(itemId, user): Promise<any[]> {

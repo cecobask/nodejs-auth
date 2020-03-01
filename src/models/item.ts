@@ -6,7 +6,7 @@ interface ItemInterface {
 }
 
 const ItemSchema = new mongoose.Schema({
-  
+
   name: {
     type: String,
     required: true,
@@ -18,6 +18,6 @@ const ItemSchema = new mongoose.Schema({
     required: true,
   }
 
-})
+});
 
 export default mongoose.model<ItemInterface & mongoose.Document>('Item', ItemSchema)
