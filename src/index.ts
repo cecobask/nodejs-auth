@@ -9,9 +9,9 @@ app.use(bodyParser.json())
 app.use('/api', routes);
 
 app.listen(3000, async () => {
-  console.log('Server ready!')
-  const mongoConnection = await mongoose.connect('mongodb://localhost/nodejs-auth');
-  console.log('Database ready!')
-  
-  console.log('Listening on port 3000')
+  console.log('Starting server...');
+  await mongoose.connect('mongodb://localhost/demo-db', { useNewUrlParser: true, useCreateIndex: true })
+      .then(() => console.log('Database ready!'));
+
+  console.log('Listening on port 3000!')
 })
