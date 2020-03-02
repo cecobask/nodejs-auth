@@ -17,7 +17,7 @@ export default class ItemsService {
       owner: user._id,
     };
 
-    return ItemModel.create(item).populate({ path: 'owner', select: '-password -salt' });
+    return ItemModel.create(item);
   }
 
   public async Update(itemId, itemDTO, user): Promise<any[]> {
