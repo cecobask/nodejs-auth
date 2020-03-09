@@ -1,10 +1,8 @@
 import * as argon2 from 'argon2';
 import { randomBytes } from 'crypto';
 import 'dotenv/config';
-
-import UserModel from '../models/user';
-
 import * as jwt from 'jsonwebtoken'
+import UserModel from '../models/user';
 
 export default class AuthService {
   constructor(){}
