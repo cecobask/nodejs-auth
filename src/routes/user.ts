@@ -5,6 +5,17 @@ import attachCurrentUser from '../middlewares/attachCurrentUser';
 
 export default (app) => {
 
+  app.post('/user/signup', async (req, res, next) => {
+    try {
+      const { name, email, password } = req.body.user;
+      const authServiceInstance = new AuthService();
+      const { user, token } = await authServiceInstance.SignUp(email, password, name);
+      return res.json({ user, token }).status(200).end();
+    } catch (e) {
+      return next(e)
+    }
+  });
+
   app.post('/user/login', async (req, res, next) => {
     const email = req.body.user.email;
     const password = req.body.user.password;
@@ -29,16 +40,5 @@ export default (app) => {
       return next(e)
     }
   });
-
-  app.post('/user/signup', async (req, res, next) => {
-    try {
-      const { name, email, password } = req.body.user;
-      const authServiceInstance = new AuthService();
-      const { user, token } = await authServiceInstance.SignUp(email, password, name);
-      return res.json({ user, token }).status(200).end();
-    } catch (e) {
-      return next(e)
-    }
-  })
 
 };
